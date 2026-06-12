@@ -19,15 +19,16 @@
 
 void hack_start(const char *game_data_dir) {
     bool load = false;
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 100000000; i++) {
         void *handle = xdl_open("libil2cpp.so", 0);
         if (handle) {
             load = true;
+            sleep(10);
             il2cpp_api_init(handle);
             il2cpp_dump(game_data_dir);
             break;
         } else {
-            sleep(1);
+            sleep(0.1);
         }
     }
     if (!load) {
